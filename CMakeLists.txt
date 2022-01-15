@@ -16,6 +16,33 @@ else()
   set(METIS_LIBRARY_TYPE STATIC)
 endif(SHARED)
 
+set( idxwidth "32" CACHE STRING "Integer length (int32 or int64)" )
+set_property(CACHE idxwidth PROPERTY STRINGS 32 64)
+mark_as_advanced(CLEAR idxwidth)
+
+set( realwidth "64" CACHE STRING "Real length (float or double)" )
+set_property(CACHE realwidth PROPERTY STRINGS 32 64)
+mark_as_advanced(CLEAR realwidth)
+
+if (NOT idxwidth)
+    set(idxwidth 32)
+endif()
+if (NOT realwidth)
+    set(realwidth 64)
+endif()
+
+string(CONCAT IDX "\#define IDXTYPEWIDTH " ${idxwidth} "\n")
+string(CONCAT REAL "\#define REALTYPEWIDTH " ${realwidth} "\n")
+
+make_directory(${CMAKE_BINARY_DIR}/xinclude)
+file(WRITE "${CMAKE_BINARY_DIR}/xinclude/metis.h" ${IDX})
+file(APPEND "${CMAKE_BINARY_DIR}/xinclude/metis.h" ${REAL})
+execute_process(COMMAND cat ${CMAKE_SOURCE_DIR}/include/metis.h 
+                OUTPUT_VARIABLE outVar)
+file(APPEND "${CMAKE_BINARY_DIR}/xinclude/metis.h" ${outVar})
+#execute_process(COMMAND cat ${CMAKE_SOURCE_DIR}/include/metis.h >> ${CMAKE_BINARY_DIR}/xinclude/metis.h)
+execute_process(COMMAND cp ${CMAKE_SOURCE_DIR}/include/CMakeLists.txt ${CMAKE_BINARY_DIR}/xinclude)
+
 include(./conf/gkbuild.cmake)
 
 # METIS' custom options
