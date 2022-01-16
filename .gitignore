@@ -57,6 +57,6 @@ graphs/*.part.*
 graphs/*.iperm
 graphs/*.epart.*
 graphs/*.npart.*
-GKlib
+#GKlib
 .svn/
 
