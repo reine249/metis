@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 cmake_policy(SET CMP0048 NEW)
+
 project(METIS VERSION 1.0.0 LANGUAGES C)
 
 set(GKLIB_PATH "${CMAKE_SOURCE_DIR}/GKlib" CACHE PATH "path to GKlib")
