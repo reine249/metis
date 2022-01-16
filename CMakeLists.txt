@@ -4,7 +4,7 @@ cmake_policy(SET CMP0048 NEW)
 
 project(METIS VERSION 1.0.0 LANGUAGES C)
 
-set(GKLIB_PATH "${CMAKE_SOURCE_DIR}/GKlib" CACHE PATH "path to GKlib")
+set(GKLIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/GKlib" CACHE PATH "path to GKlib")
 set(SHARED FALSE CACHE BOOL "build a shared library")
 
 if(MSVC)
@@ -22,12 +22,12 @@ endif(SHARED)
 
 set( IDX_TYPE_WIDTH "32" CACHE STRING "Integer length (int32 or int64)" )
 set( REAL_TYPE_WIDTH "32" CACHE STRING "Integer length (int32 or int64)" )
-configure_file( ${CMAKE_SOURCE_DIR}/include/metis.h.in ${CMAKE_SOURCE_DIR}/include/metis.h )
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/include/metis.h.in ${CMAKE_CURRENT_SOURCE_DIR}/include/metis.h )
 
 include(${GKLIB_PATH}/GKlibSystem.cmake)
 # Add include directories.
 include_directories(${GKLIB_PATH})
-include_directories(include)
+#include_directories(include)
 # Recursively look for CMakeLists.txt in subdirs.
 add_subdirectory("include")
 add_subdirectory("libmetis")
