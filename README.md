@@ -7,7 +7,12 @@ partitioning schemes developed in our lab.
 
 ##  Downloading METIS
 
-You can download METIS by simply cloning it using the command:
+The repo with a working CMake is downloaded by simply cloning it using the command:
+```
+git clone https://github.com/reine249/metis.git
+```
+
+The original metis is found here:
 ```
 git clone https://github.com/KarypisLab/METIS.git
 ```
