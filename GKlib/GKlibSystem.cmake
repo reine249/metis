@@ -108,8 +108,8 @@ else()
   # This if checks if that value is cached or not.
   if("${HAVE_THREADLOCALSTORAGE}" MATCHES "^${HAVE_THREADLOCALSTORAGE}$")
     try_compile(HAVE_THREADLOCALSTORAGE
-      ${CMAKE_BINARY_DIR}
-      ${GKLIB_PATH}/conf/check_thread_storage.c)
+        ${CMAKE_CURRENT_BINARY_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/GKlib/conf/check_thread_storage.c)
     if(HAVE_THREADLOCALSTORAGE)
       message(STATUS "checking for thread-local storage - found")
     else()
